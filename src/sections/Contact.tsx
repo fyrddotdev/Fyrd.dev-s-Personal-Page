@@ -32,7 +32,6 @@ export default function Contact() {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Option 1: Instagram (Direct Link) */}
           <a
             href="https://instagram.com/its.justfarid" // Replace with your Instagram link
             target="_blank"
@@ -54,7 +53,6 @@ export default function Contact() {
             </Card>
           </a>
 
-          {/* Option 2: Discord (Click to Copy System) */}
           <button
             onClick={handleCopyDiscord}
             className="group text-left w-full"
