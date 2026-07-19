@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const getLevelColor = (level: string) => {
   switch (level.toLowerCase()) {
@@ -12,6 +13,30 @@ const getLevelColor = (level: string) => {
     default:
       return "text-zinc-500 bg-zinc-900 border-zinc-800";
   }
+};
+
+// Konfigurasi variant stagger untuk parent grid
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+// Konfigurasi variant scale untuk individual kategori card (ditambahkan as const agar aman dari TS)
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.21, 0.47, 0.32, 0.98] as const,
+    },
+  },
 };
 
 function TechStack() {
@@ -67,38 +92,51 @@ function TechStack() {
             <h1 className="text-4xl font-extrabold">Tech Stack</h1>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
             {categories.map((category, idx) => (
-              <Card
+              /* Menggunakan motion.div sebagai pelindung luar agar Grid Flexbox tetap menghitung tinggi dengan benar */
+              <motion.div
                 key={idx}
-                className="border-zinc-900 bg-zinc-950/50 hover:border-zinc-800 transition-all duration-300"
+                variants={cardVariants}
+                whileHover={{ scale: 1.02, y: -4 }}
+                transition={{ type: "spring", duration: 0.3, bounce: 0.2 }}
+                className="h-full w-full custom-card-motion-wrapper"
               >
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-2xl font-mono font-bold text-zinc-200 uppercase tracking-wider">
-                    {category.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-3">
-                  {category.skills.map((skill, sIdx) => (
-                    <div
-                      key={sIdx}
-                      className="flex items-center justify-between font-mono bg-zinc-900/40 border border-zinc-900 px-3 py-2 rounded-md hover:border-zinc-800 transition-colors"
-                    >
-                      <span className="text-sm font-medium text-zinc-300">
-                        {skill.name}
-                      </span>
-
-                      <span
-                        className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border transition-colors ${getLevelColor(skill.level)}`}
+                {/* Menambahkan h-full pada Card bawaan agar tingginya otomatis seragam mengikuti tinggi grid */}
+                <Card className="border-zinc-900 bg-zinc-950/50 hover:border-zinc-800 transition-all duration-300 h-full">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-2xl font-mono font-bold text-zinc-200 uppercase tracking-wider">
+                      {category.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex flex-col gap-3">
+                    {category.skills.map((skill, sIdx) => (
+                      <div
+                        key={sIdx}
+                        className="flex items-center justify-between font-mono bg-zinc-900/40 border border-zinc-900 px-3 py-2 rounded-md hover:border-zinc-800 transition-colors"
                       >
-                        {skill.level}
-                      </span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
+                        <span className="text-sm font-medium text-zinc-300">
+                          {skill.name}
+                        </span>
+
+                        <span
+                          className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border transition-colors ${getLevelColor(skill.level)}`}
+                        >
+                          {skill.level}
+                        </span>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </>

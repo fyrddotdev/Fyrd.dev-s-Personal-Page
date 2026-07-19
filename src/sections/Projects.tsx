@@ -1,5 +1,6 @@
 import ProjectCard from "@/components/projectCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { motion } from "framer-motion";
 
 interface ProjectCardProps {
   title: string;
@@ -77,6 +78,17 @@ const projectList: ProjectCardProps[] = [
   },
 ];
 
+// Konfigurasi stagger pada container grid
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, // Waktu jeda kemunculan antar card (0.1 detik)
+    },
+  },
+};
+
 function Projects() {
   return (
     <>
@@ -84,6 +96,7 @@ function Projects() {
         <div className="relative pt-14 pb-14 pr-28 pl-28 j md:flex-row w-full">
           <div className="container flex flex-col items-center mx-auto">
             <h2 className="text-4xl font-extrabold text-center">Projects</h2>
+
             <Tabs defaultValue="solo" className="w-full">
               <TabsList className="grid w-full mt-4 grid-cols-2 border border-zinc-900 bg-zinc-950 p-1 rounded-xl">
                 <TabsTrigger
@@ -100,13 +113,20 @@ function Projects() {
                 </TabsTrigger>
               </TabsList>
 
+              {/* 🔘 TAB CONTENT: SOLO */}
               <TabsContent value="solo" className="focus-visible:outline-none">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <motion.div
+                  key="solo-grid" // Memaksa animasi ulang saat tab solo dimuat
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                >
                   {projectList.map(
                     (value, index) =>
                       value.isSolo && (
                         <ProjectCard
-                          key={index}
+                          key={`solo-${index}`} // Key unik per item gabungan tipe tab
                           title={value.title}
                           description={value.description}
                           year={value.year}
@@ -114,19 +134,26 @@ function Projects() {
                           imageUrl={value.imageUrl}
                           projectUrl={value.projectUrl}
                           githubUrl={value.githubUrl}
-                        ></ProjectCard>
+                        />
                       ),
                   )}
-                </div>
+                </motion.div>
               </TabsContent>
 
+              {/* 🔘 TAB CONTENT: TEAM */}
               <TabsContent value="team" className="focus-visible:outline-none">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <motion.div
+                  key="team-grid" // Memaksa animasi ulang saat tab team dimuat
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                >
                   {projectList.map(
                     (value, index) =>
                       !value.isSolo && (
                         <ProjectCard
-                          key={index}
+                          key={`team-${index}`} // Key unik per item gabungan tipe tab
                           title={value.title}
                           description={value.description}
                           year={value.year}
@@ -134,10 +161,10 @@ function Projects() {
                           imageUrl={value.imageUrl}
                           projectUrl={value.projectUrl}
                           githubUrl={value.githubUrl}
-                        ></ProjectCard>
+                        />
                       ),
                   )}
-                </div>
+                </motion.div>
               </TabsContent>
             </Tabs>
           </div>

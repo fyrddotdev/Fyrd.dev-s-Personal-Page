@@ -30,8 +30,8 @@ export function ImageOnlyModal({
       </DialogTrigger>
 
       {/* Konten Modal: Murni Gambar & Tombol Close Bawaan */}
-      <DialogContent className="sm:max-w-[700px] border-zinc-900 bg-zinc-950 p-2 text-zinc-100 overflow-hidden">
-        <div className="relative w-full overflow-hidden rounded-md bg-zinc-900 aspect-[4/3] sm:aspect-[16/10]">
+      <DialogContent className="sm:max-w-175 border-zinc-900 bg-zinc-950 p-2 text-zinc-100 overflow-hidden">
+        <div className="relative w-full overflow-hidden rounded-md bg-zinc-900 aspect-4/3 sm:aspect-16/10">
           <img
             src={imageUrl}
             alt={altText}

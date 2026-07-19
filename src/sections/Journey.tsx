@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageOnlyModal } from "@/components/ImageOnlyModal";
+import { motion } from "framer-motion";
 
 import fls3nCertificate from "@/assets/certificates/fls3n_certificate.jpg";
 import limitCertificate from "@/assets/certificates/limit_certificate.jpg";
@@ -15,6 +16,30 @@ interface JourneyItem {
   externalLink?: string;
   imageUrl?: string;
 }
+
+// Konfigurasi variant stagger untuk pembungkus list timeline
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+// Konfigurasi variant scale untuk individual item card
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.21, 0.47, 0.32, 0.98] as const,
+    },
+  },
+};
 
 export default function Journey() {
   // Data 1: Fokus pada pertumbuhan teknis & game dev
@@ -98,7 +123,7 @@ export default function Journey() {
     {
       year: "2025",
       title: "#2 FLS3N Photography Category – Regency Level",
-      subtitle: "Pusat Prestasi Nasional ( Puspresnas )",
+      subtitle: "Pusat Prestasi Nasional ( Pusat Prestasi Nasional )",
       description:
         "Won second place in the regency-level FLS3N photography competition organized by the National Achievement Center (Puspresnas) and advanced to represent the region at the provincial level.",
       badgeText: "#2 FLS3N Certificate (Regency Level) 🏆",
@@ -107,10 +132,23 @@ export default function Journey() {
     },
   ];
 
-  const renderTimeline = (items: JourneyItem[]) => (
-    <div className="relative border-l border-zinc-900 ml-4 mt-6 space-y-8">
+  const renderTimeline = (items: JourneyItem[], tabKey: string) => (
+    <motion.div
+      key={tabKey}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="relative border-l border-zinc-900 ml-4 mt-6 space-y-8"
+    >
       {items.map((item, index) => (
-        <div key={index} className="relative pl-8 group">
+        <motion.div
+          key={index}
+          variants={itemVariants}
+          // MENAMBAHKAN ANIMASI HOVER: Sedikit membesar dan bergeser ke kanan (x: 4) agar dinamis mengikuti arah garis timeline
+          whileHover={{ scale: 1.015, x: 4 }}
+          transition={{ type: "spring", duration: 0.3, bounce: 0.2 }}
+          className="relative pl-8 group cursor-pointer"
+        >
           <div
             className={`absolute -left-2.25 top-1.5 h-4 w-4 rounded-full border-4 transition-colors duration-300
             ${
@@ -192,49 +230,51 @@ export default function Journey() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 
   return (
-    <section
-      id="journey"
-      className="py-20 bg-zinc-950 text-zinc-100 border-b border-zinc-900"
-    >
-      <div className="container mx-auto px-4 max-w-3xl">
-        <div className="space-y-2 mb-10">
-          <h2 className="text-sm font-semibold tracking-wider text-zinc-400 uppercase">
-            Timeline & History
-          </h2>
-          <h1 className="text-3xl font-bold text-zinc-100">My Journey</h1>
+    <>
+      <section
+        id="journey"
+        className="py-20 bg-zinc-950 text-zinc-100 border-b border-zinc-900"
+      >
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="space-y-2 mb-10">
+            <h2 className="text-sm font-semibold tracking-wider text-zinc-400 uppercase">
+              Timeline & History
+            </h2>
+            <h1 className="text-3xl font-bold text-zinc-100">My Journey</h1>
+          </div>
+
+          <Tabs defaultValue="dev" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 border border-zinc-900 bg-zinc-950 p-1 rounded-xl">
+              <TabsTrigger
+                value="dev"
+                className="font-mono text-xs rounded-lg transition-all"
+              >
+                Dev Milestones
+              </TabsTrigger>
+              <TabsTrigger
+                value="school"
+                className="font-mono text-xs rounded-lg transition-all"
+              >
+                School & Achievements
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="dev" className="focus-visible:outline-none">
+              {renderTimeline(devJourney, "dev-timeline")}
+            </TabsContent>
+
+            <TabsContent value="school" className="focus-visible:outline-none">
+              {renderTimeline(schoolJourney, "school-timeline")}
+            </TabsContent>
+          </Tabs>
         </div>
-
-        <Tabs defaultValue="dev" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 border border-zinc-900 bg-zinc-950 p-1 rounded-xl">
-            <TabsTrigger
-              value="dev"
-              className="font-mono text-xs rounded-lg transition-all"
-            >
-              Dev Milestones
-            </TabsTrigger>
-            <TabsTrigger
-              value="school"
-              className="font-mono text-xs rounded-lg transition-all"
-            >
-              School & Achievements
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="dev" className="focus-visible:outline-none">
-            {renderTimeline(devJourney)}
-          </TabsContent>
-
-          <TabsContent value="school" className="focus-visible:outline-none">
-            {renderTimeline(schoolJourney)}
-          </TabsContent>
-        </Tabs>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
