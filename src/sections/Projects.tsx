@@ -78,13 +78,12 @@ const projectList: ProjectCardProps[] = [
   },
 ];
 
-// Konfigurasi stagger pada container grid
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Waktu jeda kemunculan antar card (0.1 detik)
+      staggerChildren: 0.1,
     },
   },
 };
@@ -93,30 +92,29 @@ function Projects() {
   return (
     <>
       <section id="projects">
-        <div className="relative pt-14 pb-14 pr-28 pl-28 j md:flex-row w-full">
+        <div className="relative pt-12 pb-12 pr-24 pl-24 j md:flex-row w-full">
           <div className="container flex flex-col items-center mx-auto">
             <h2 className="text-4xl font-extrabold text-center">Projects</h2>
 
             <Tabs defaultValue="solo" className="w-full">
-              <TabsList className="grid w-full mt-4 grid-cols-2 border border-zinc-900 bg-zinc-950 p-1 rounded-xl">
+              <TabsList className="flex w-full mt-8 mb-3 h-auto! items-stretch border border-zinc-900 bg-zinc-950">
                 <TabsTrigger
                   value="solo"
-                  className="font-mono text-xs rounded-lg transition-all"
+                  className="h-full! flex-1 text-md font-medium transition-all"
                 >
                   Solo Projects
                 </TabsTrigger>
                 <TabsTrigger
                   value="team"
-                  className="font-mono text-xs rounded-lg transition-all"
+                  className="h-full! flex-1 text-md font-medium transition-all"
                 >
                   Team Projects
                 </TabsTrigger>
               </TabsList>
 
-              {/* 🔘 TAB CONTENT: SOLO */}
               <TabsContent value="solo" className="focus-visible:outline-none">
                 <motion.div
-                  key="solo-grid" // Memaksa animasi ulang saat tab solo dimuat
+                  key="solo-grid"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
@@ -126,7 +124,7 @@ function Projects() {
                     (value, index) =>
                       value.isSolo && (
                         <ProjectCard
-                          key={`solo-${index}`} // Key unik per item gabungan tipe tab
+                          key={`solo-${index}`}
                           title={value.title}
                           description={value.description}
                           year={value.year}
@@ -140,10 +138,9 @@ function Projects() {
                 </motion.div>
               </TabsContent>
 
-              {/* 🔘 TAB CONTENT: TEAM */}
               <TabsContent value="team" className="focus-visible:outline-none">
                 <motion.div
-                  key="team-grid" // Memaksa animasi ulang saat tab team dimuat
+                  key="team-grid"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
@@ -153,7 +150,7 @@ function Projects() {
                     (value, index) =>
                       !value.isSolo && (
                         <ProjectCard
-                          key={`team-${index}`} // Key unik per item gabungan tipe tab
+                          key={`team-${index}`}
                           title={value.title}
                           description={value.description}
                           year={value.year}

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ReactNode } from "react";
 
-// Components & Sections Imports
 import Navbar from "./components/navbar";
 import AboutMe from "./sections/About";
 import Hero from "./sections/Hero";
@@ -12,7 +11,6 @@ import TechStack from "./sections/TechStack";
 import Contact from "./sections/Contact";
 import CustomCursor from "./components/CustomCursor";
 
-// Reusable Scroll Reveal Wrapper
 interface ScrollRevealProps {
   children: ReactNode;
 }
@@ -30,14 +28,13 @@ function ScrollReveal({ children }: ScrollRevealProps) {
   );
 }
 
-// List kata "Halo" dari berbagai bahasa untuk fase greeting
 const greetings = [
   "Hello",
   "こんにちは",
   "Bonjour",
   "Hola",
   "안녕하세요",
-  "Ciao",
+  "Привет",
   "Olá",
   "مرحبًا",
   "你好",
@@ -51,7 +48,6 @@ function App() {
   );
   const [currentGreetingIndex, setCurrentGreetingIndex] = useState(0);
 
-  // 1. Engine Loading Progress (Menunggu window selesai loading penuh agar tidak patah-patah)
   useEffect(() => {
     if (phase !== "loading") return;
 
@@ -72,10 +68,8 @@ function App() {
 
     let loadingInterval: ReturnType<typeof setInterval>;
 
-    // Cek apakah browser masih sibuk mendownload aset
     if (document.readyState !== "complete") {
       const handleWindowLoad = () => {
-        // Kasih jeda buffer 200ms setelah window load agar pemrosesan CPU stabil
         setTimeout(() => {
           loadingInterval = startLoadingEngine();
         }, 200);
@@ -87,17 +81,14 @@ function App() {
         if (loadingInterval) clearInterval(loadingInterval);
       };
     } else {
-      // Jika di-refresh dan aset sudah masuk cache lokal
       loadingInterval = startLoadingEngine();
       return () => clearInterval(loadingInterval);
     }
   }, [phase]);
 
-  // 2. Engine Perubahan Kata Greeting (Rhythm & timing diperhalus)
   useEffect(() => {
     if (phase !== "greeting") return;
 
-    // Set timeout pendek sebelum interval jalan agar kata pertama ("Hello") sempat dirender penuh
     const delayStart = setTimeout(() => {
       const interval = setInterval(() => {
         setCurrentGreetingIndex((prev) => {
@@ -111,7 +102,7 @@ function App() {
       }, 300);
 
       return () => clearInterval(interval);
-    }, 300); // Jeda aman 150ms biar transisi fade-in kata pertama selesai dulu
+    }, 300);
 
     return () => clearTimeout(delayStart);
   }, [phase]);
@@ -144,7 +135,7 @@ function App() {
                 </span>
               </div>
 
-              <div className="w-full h-3.5 bg-zinc-900 border border-zinc-800 rounded-none overflow-hidden p-[3px]">
+              <div className="w-full h-3.5 bg-zinc-900 border border-zinc-800 rounded-none overflow-hidden p-0.75">
                 <motion.div
                   className="h-full bg-primary"
                   initial={{ width: "0%" }}

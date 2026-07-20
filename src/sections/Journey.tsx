@@ -259,16 +259,16 @@ export default function Journey() {
           </div>
 
           <Tabs defaultValue="dev" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 border border-zinc-900 bg-zinc-950 p-1 rounded-xl">
+            <TabsList className="flex w-full mt-8 mb-3 h-auto! items-stretch border border-zinc-900 bg-zinc-950">
               <TabsTrigger
                 value="dev"
-                className="font-mono text-xs rounded-lg transition-all"
+                className="h-full! flex-1 text-md font-medium transition-all"
               >
                 Dev Milestones
               </TabsTrigger>
               <TabsTrigger
                 value="school"
-                className="font-mono text-xs rounded-lg transition-all"
+                className="h-full! flex-1 text-md font-medium transition-all"
               >
                 School & Achievements
               </TabsTrigger>

@@ -88,13 +88,13 @@ function ProjectCard({
             <CardFooter className="flex justify-end p-0 bg-zinc 900 border-0 gap-2 w-full">
               {githubUrl && (
                 <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="px-8 py-5">
+                  <Button variant="outline" className="px-6 py-5">
                     Github
                   </Button>
                 </a>
               )}
               <a href={projectUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="px-8 py-5">View More</Button>
+                <Button className="px-6 py-5">Open</Button>
               </a>
             </CardFooter>
           </div>
