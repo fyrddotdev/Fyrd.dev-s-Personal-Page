@@ -94,7 +94,7 @@ function ProjectCard({
                 </a>
               )}
               <a href={projectUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="px-8 py-5">Play</Button>
+                <Button className="px-8 py-5">View More</Button>
               </a>
             </CardFooter>
           </div>

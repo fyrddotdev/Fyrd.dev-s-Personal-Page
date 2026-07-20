@@ -83,9 +83,18 @@ export default function Journey() {
 
   const schoolJourney: JourneyItem[] = [
     {
+      year: "2026-Present",
+      title:
+        "Member of the Department of Communication and Informatics or Public Relations",
+      subtitle: "Forum OSIS Daerah Provinsi Gorontalo",
+      description:
+        "Responsible for managing regional public relations, digital publication workflows, media content creation, and strategic communication channels across high school student councils throughout Gorontalo Province.",
+      badgeText: "Active",
+    },
+    {
       year: "2025-Present",
-      title: "OSIS Division 9 - Teknologi, Informasi, Dan Komunikasi",
-      subtitle: "Member, Chair of Division 9",
+      title: "Head of OSIS Division 9 - Teknologi, Informasi, Dan Komunikasi",
+      subtitle: " OSIS & MPK SMA Negeri 1 Kabila",
       description:
         "Fully responsible for the concepts, workflows, portrait editing (Instagram/Reels), after-movies, feed content, pamphlets, posters, and video asset management for the publications of the OSIS & MPK SMA Negeri 1 Kabila.",
       badgeText: "Active",

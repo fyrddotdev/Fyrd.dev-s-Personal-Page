@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const discordUsername = "fyrd.dev_"; // Replace with your actual Discord username
+  const discordUsername = "fyrd.dev_";
 
   const handleCopyDiscord = () => {
     navigator.clipboard.writeText(discordUsername);
@@ -33,7 +33,7 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <a
-            href="https://instagram.com/its.justfarid" // Replace with your Instagram link
+            href="https://instagram.com/its.justfarid"
             target="_blank"
             rel="noopener noreferrer"
             className="group"
