@@ -53,7 +53,10 @@ function TechStack() {
     },
     {
       title: "Frameworks & Libraries",
-      skills: [{ name: "React", level: "Intermediate" }],
+      skills: [
+        { name: "React", level: "Intermediate" },
+        { name: "Next.js", level: "Beginner" },
+      ],
     },
     {
       title: "Game Dev & Engines",
@@ -65,7 +68,7 @@ function TechStack() {
     {
       title: "Tools & Ecosystem",
       skills: [
-        { name: "VSCodium", level: "Advanced" },
+        { name: "Zed", level: "Advanced" },
         { name: "Git / GitHub", level: "Intermediate" },
         { name: "Vite", level: "Familiar" },
         { name: "CMake", level: "Beginner" },
