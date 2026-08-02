@@ -55,6 +55,8 @@ function TechStack() {
       title: "Frameworks & Libraries",
       skills: [
         { name: "React", level: "Intermediate" },
+        { name: "Tailwind CSS", level: "Intermediate" },
+        { name: "Shadcn/ui", level: "Intermediate" },
         { name: "Next.js", level: "Beginner" },
       ],
     },
