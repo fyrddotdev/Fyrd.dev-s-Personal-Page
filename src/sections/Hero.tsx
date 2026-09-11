@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import me from "@/assets/farid.svg";
+import me from "@/assets/farid.webp";
 import { Button } from "@/components/ui/button";
 
 function Hero() {
@@ -17,7 +17,7 @@ function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 3000); // Ganti kata setiap 3 detik
+    }, 3000);
     return () => clearInterval(interval);
   }, [words.length]);
 
@@ -49,24 +49,20 @@ function Hero() {
                   key={index}
                   className="text-primary-foreground font-extrabold flex items-center"
                 >
-                  {/* Memecah string kata menjadi array huruf agar bisa diketik satu per satu */}
                   {words[index].split("").map((char, charIndex) => (
                     <motion.span
                       key={charIndex}
                       initial={{ display: "none" }}
                       animate={{ display: "inline-block" }}
                       transition={{
-                        // Memberikan jeda (delay) antar huruf agar muncul berurutan
                         delay: charIndex * 0.05,
                         duration: 0.01,
                       }}
                     >
-                      {/* Menjaga spasi antar kata agar tidak kemakan layout flex */}
                       {char === " " ? "\u00A0" : char}
                     </motion.span>
                   ))}
 
-                  {/* Kursor Berkedip Khas Terminal Kodingan */}
                   <motion.span
                     animate={{ opacity: [1, 0] }}
                     transition={{

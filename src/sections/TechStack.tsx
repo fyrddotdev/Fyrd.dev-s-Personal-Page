@@ -45,9 +45,7 @@ function TechStack() {
       title: "Programming Languages",
       skills: [
         { name: "GDScript", level: "Advanced" },
-        { name: "JavaScript", level: "Intermediate" },
         { name: "TypeScript", level: "Intermediate" },
-        { name: "HTML / CSS", level: "Intermediate" },
         { name: "C++", level: "Beginner" },
       ],
     },
@@ -55,9 +53,9 @@ function TechStack() {
       title: "Frameworks & Libraries",
       skills: [
         { name: "React", level: "Intermediate" },
+        { name: "Next.js", level: "Intermediate" },
         { name: "Tailwind CSS", level: "Intermediate" },
         { name: "Shadcn/ui", level: "Intermediate" },
-        { name: "Next.js", level: "Beginner" },
       ],
     },
     {
@@ -72,7 +70,6 @@ function TechStack() {
       skills: [
         { name: "Zed", level: "Advanced" },
         { name: "Git / GitHub", level: "Intermediate" },
-        { name: "Vite", level: "Familiar" },
         { name: "CMake", level: "Beginner" },
       ],
     },

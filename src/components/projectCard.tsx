@@ -58,10 +58,9 @@ function ProjectCard({
               />
             </div>
 
-            {/* Mengubah CardHeader menjadi flex-col & flex-1 agar porsi teks dan konten membagi ruang secara adil */}
             <CardHeader className="w-full p-4 border-t flex-1 flex flex-col justify-between gap-4">
               <div className="flex-1">
-                <CardTitle className="font-extrabold lg:text-2xl">
+                <CardTitle className="font-extrabold lg:text-xl">
                   {title}
                 </CardTitle>
                 <h2 className="font-extralight text-xs text-zinc-300 mb-4">

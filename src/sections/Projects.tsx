@@ -15,6 +15,17 @@ interface ProjectCardProps {
 
 const projectList: ProjectCardProps[] = [
   {
+    title: "Forum OSIS Daerah Gorontalo Web",
+    year: 2026,
+    description:
+      "Official organizational profile website of the Forum OSIS Daerah Gorontalo.",
+    techStack: ["React", "Next.js", "TypeScript", "Sanity CMS"],
+    imageUrl: "https://i.imgur.com/HSCwjE0.png",
+    projectUrl: "https://fodagorontalo.netlify.app/",
+    githubUrl: "https://github.com/fyrddotdev/forum-osis-daerah-gorontalo/",
+    isSolo: true,
+  },
+  {
     title: "Catty Cardy",
     year: 2026,
     description:
@@ -118,7 +129,7 @@ function Projects() {
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
-                  className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
                   {projectList.map(
                     (value, index) =>
@@ -144,7 +155,7 @@ function Projects() {
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
-                  className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
                   {projectList.map(
                     (value, index) =>
