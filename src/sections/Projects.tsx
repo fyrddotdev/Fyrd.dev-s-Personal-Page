@@ -15,7 +15,7 @@ interface ProjectCardProps {
 
 const projectList: ProjectCardProps[] = [
   {
-    title: "Forum OSIS Daerah Gorontalo Web",
+    title: "Forum OSIS Daerah Gorontalo",
     year: 2026,
     description:
       "Official organizational profile website of the Forum OSIS Daerah Gorontalo.",
